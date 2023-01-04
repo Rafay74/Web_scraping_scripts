@@ -1,0 +1,44 @@
+1.Connecting Reliably:
+
+page = requests.get("https://www.xyz.com")
+There are two main things that can go wrong in above line:
+- The page is not found on the server (or there was some error in retrieving it)
+- The server is not found
+
+In the first situation, an HTTP error will be returned. This HTTP error may be “404 Page
+Not Found,” “500 Internal Server Error,” etc. In all of these cases, the urlopen function
+will throw the generic exception “HTTPError” We can handle this exception in the
+following way:
+
+try:
+  html = requests.get("www.zyx.com")
+except HTTPError as e:
+  print(e)
+
+
+If the server is not found at all (if, say, http://www.pythonscraping.com was down, or the
+URL was mistyped), it returns a None object. We can add a check to see if the returned html is None
+
+if html is None:
+   print("URL is not found")
+  else:
+   #program continues
+   
+   
+-----------------------------------------------------------------------------------------
+
+2. Using this BeautifulSoup object, we can use the findAll function to extract a Python list
+nameList = bsObj.findAll("span", {"class":"green"})
+for name in nameList:
+  print(name.get_text())
+  
+findAll(tag, attributes, recursive, text, limit, keywords)
+find(tag, attributes, recursive, text, keywords)
+
+For example, the following function would return both the green and red span tags in the HTML document:
+findAll("span", {"class":"green", "class":"red"})
+
+bsObj.findAll(class_="green")
+Alternatively, you can enclose class in quotes:
+bsObj.findAll("", {"class":"green"}
+
